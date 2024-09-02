@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login/login_screen.dart';
 import 'login/register_screen.dart';
-import './dashboard_screen.dart'; // Ruta para el Dashboard que contiene todas las demás pantallas
+import '/dashboard_screen.dart'; // Ruta para el Dashboard
 import 'theme.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class SecureMobileApp extends StatelessWidget {
     return MaterialApp(
       title: 'SecureMobile',
       theme: AppTheme.theme,
-      initialRoute: '/dashboard', // Cambiado de '/login' a '/dashboard'
+      initialRoute: '/login', // Cambiado de '/login' a '/home'
       routes: {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),

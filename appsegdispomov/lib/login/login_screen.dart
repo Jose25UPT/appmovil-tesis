@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
+                Navigator.pushReplacementNamed(context, '/dashboard');
               },
               child: Text('Iniciar Sesión'),
             ),
