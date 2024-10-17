@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login/login_screen.dart';
 import 'login/register_screen.dart';
-import '/dashboard_screen.dart'; // Ruta para el Dashboard
+import 'dashboard_screen.dart'; // Asegúrate de que esta importación sea correcta
 import 'theme.dart';
 
 void main() {
@@ -14,11 +14,17 @@ class SecureMobileApp extends StatelessWidget {
     return MaterialApp(
       title: 'SecureMobile',
       theme: AppTheme.theme,
-      initialRoute: '/login', // Cambiado de '/login' a '/home'
+      initialRoute: '/login',
       routes: {
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
-        '/dashboard': (context) => DashboardScreen(), // Ruta para el Dashboard
+        '/dashboard': (context) {
+          final args = ModalRoute.of(context)!.settings.arguments as Map;
+          return DashboardScreen(
+            username: args['username'],
+            profilePictureUrl: args['profilePictureUrl'],
+          );
+        },
       },
       debugShowCheckedModeBanner: false,
     );

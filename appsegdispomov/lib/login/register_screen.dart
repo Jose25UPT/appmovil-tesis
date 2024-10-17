@@ -1,3 +1,186 @@
+<<<<<<< HEAD
+  import 'package:flutter/material.dart';
+  import './database_helper.dart';
+
+  class RegisterScreen extends StatefulWidget {
+    @override
+    _RegisterScreenState createState() => _RegisterScreenState();
+  }
+
+  class _RegisterScreenState extends State<RegisterScreen> {
+    final _usernameController = TextEditingController();
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
+    final _confirmPasswordController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
+    final DatabaseHelper _dbHelper = DatabaseHelper();
+
+    void _register() async {
+      if (_formKey.currentState!.validate()) {
+        String username = _usernameController.text;
+        String email = _emailController.text;
+        String password = _passwordController.text;
+        String confirmPassword = _confirmPasswordController.text;
+
+        if (password == confirmPassword) {
+          await _dbHelper.insertUser(username, email, password);
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Registro exitoso. Ahora puedes iniciar sesión.')),
+          );
+
+          Navigator.pop(context);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Las contraseñas no coinciden')),
+          );
+        }
+      }
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Registro'),
+          centerTitle: true, // Centra el título en la AppBar
+          backgroundColor: Colors.blueAccent, // Color de fondo de la AppBar
+        ),
+        body: SingleChildScrollView(  // Envuelve el contenido en un SingleChildScrollView
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    child: CircleAvatar(
+                      radius: 50,
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/mobile.png',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'Crear Cuenta',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .copyWith(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 40),
+                  TextFormField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      labelText: 'Nombre de Usuario',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    style: TextStyle(color: Colors.white),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingresa un nombre de usuario';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      labelText: 'Correo Electrónico',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    style: TextStyle(color: Colors.white),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingresa un correo electrónico';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      labelText: 'Contraseña',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    obscureText: true,
+                    style: TextStyle(color: Colors.white),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingresa una contraseña';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _confirmPasswordController,
+                    decoration: InputDecoration(
+                      labelText: 'Confirmar Contraseña',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    obscureText: true,
+                    style: TextStyle(color: Colors.white),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor confirma tu contraseña';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 40),
+                  ElevatedButton(
+                    onPressed: _register,
+                    child: Text('Registrarse'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      backgroundColor: Colors.blueAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ), // Color de fondo del botón
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Ya tengo una cuenta',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+=======
 import 'package:flutter/material.dart';
 import './database_helper.dart';
 
@@ -153,5 +336,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
   }
-}

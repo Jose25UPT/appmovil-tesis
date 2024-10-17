@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
-import './dashboard/historial_analisis_screen.dart';
 import './dashboard/escaneo_seguridad_screen.dart';
 import './dashboard/alertas_notificaciones_screen.dart';
-import './dashboard/configuracion_seguridad_screen.dart';
 import './dashboard/resumen_seguridad_screen.dart';
 import './dashboard/perfil_usuario_screen.dart';
 import './dashboard/reporte_analisis_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
+<<<<<<< HEAD
+  final String username;
+  final String profilePictureUrl;
+
+  DashboardScreen({
+    required this.username,
+    required this.profilePictureUrl,
+  });
+
+=======
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard'),
+<<<<<<< HEAD
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+=======
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
         actions: [
           IconButton(
             icon: Icon(Icons.person),
@@ -20,7 +34,11 @@ class DashboardScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+<<<<<<< HEAD
+                  builder: (context) => PerfilUsuarioScreen(nombre: username, email: '',),
+=======
                   builder: (context) => PerfilUsuarioScreen(),
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
                 ),
               );
             },
@@ -32,6 +50,38 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+<<<<<<< HEAD
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 35,
+                  backgroundImage: profilePictureUrl.isNotEmpty
+                      ? NetworkImage(profilePictureUrl)
+                      : AssetImage('assets/mobile.png') as ImageProvider,
+                  onBackgroundImageError: (_, __) {
+                    print('Error al cargar la imagen de perfil.');
+                  },
+                ),
+                SizedBox(width: 12),
+                Text(
+                  'Bienvenido, $username',
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+            SizedBox(height: 25),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
+                children: [
+                  _buildDashboardButton(
+                    context,
+=======
             Text(
               'Bienvenido, [Nombre del Usuario]',
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.blue),
@@ -59,6 +109,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   _buildDashboardButton(
                     context,
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
                     Icons.security,
                     'Escaneo de Seguridad',
                     Colors.green,
@@ -85,6 +136,9 @@ class DashboardScreen extends StatelessWidget {
                       );
                     },
                   ),
+<<<<<<< HEAD
+                   
+=======
                   _buildDashboardButton(
                     context,
                     Icons.settings,
@@ -99,6 +153,7 @@ class DashboardScreen extends StatelessWidget {
                       );
                     },
                   ),
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
                   _buildDashboardButton(
                     context,
                     Icons.assessment,
@@ -132,6 +187,8 @@ class DashboardScreen extends StatelessWidget {
             ),
           ],
         ),
+<<<<<<< HEAD
+=======
       ),
     );
   }
@@ -157,6 +214,40 @@ class DashboardScreen extends StatelessWidget {
             ],
           ),
         ),
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
+      ),
+    );
+  }
+
+  Widget _buildDashboardButton(
+    BuildContext context,
+    IconData icon,
+    String title,
+    Color color,
+    VoidCallback onPressed,
+  ) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 50, color: Colors.white),
+          SizedBox(height: 10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }

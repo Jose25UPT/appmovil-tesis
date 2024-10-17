@@ -15,6 +15,18 @@ class DatabaseHelper {
     _database = await _initDatabase();
     return _database!;
   }
+<<<<<<< HEAD
+  Future<int> registerUser(String username, String password, String profilePictureUrl) async {
+  final db = await database;
+  var res = await db.insert("User", {
+    'username': username,
+    'password': password,
+    'profilePictureUrl': profilePictureUrl,
+  });
+  return res;
+}
+=======
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
 
   Future<Database> _initDatabase() async {
     String path = join(await getDatabasesPath(), 'securemobile.db');
@@ -24,11 +36,21 @@ class DatabaseHelper {
         return db.execute(
           '''
           CREATE TABLE users(
+<<<<<<< HEAD
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  username TEXT NOT NULL, 
+  email TEXT NOT NULL UNIQUE, 
+  password TEXT NOT NULL,
+  profilePictureUrl TEXT
+)
+
+=======
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
             username TEXT NOT NULL, 
             email TEXT NOT NULL UNIQUE, 
             password TEXT NOT NULL
           )
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
           '''
         );
       },
@@ -53,6 +75,19 @@ class DatabaseHelper {
     }
   }
 
+<<<<<<< HEAD
+  Future<Map<String, dynamic>?> getUser(String identifier, String password) async {
+  final db = await database;
+  final List<Map<String, dynamic>> maps = await db.query(
+    'users',
+    where: "(email = ? OR username = ?) AND password = ?",
+    whereArgs: [identifier, identifier, password],
+  );
+  if (maps.isNotEmpty) {
+    return maps.first;
+  }
+  return null;
+=======
   Future<Map<String, dynamic>?> getUser(String email, String password) async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(
@@ -64,5 +99,6 @@ class DatabaseHelper {
       return maps.first;
     }
     return null;
+>>>>>>> a90086a6a9618588b1e04989fa68c4ad48d8f0b6
   }
 }

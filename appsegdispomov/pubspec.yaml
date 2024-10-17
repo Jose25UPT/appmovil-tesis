@@ -14,9 +14,23 @@ dependencies:
     sdk: flutter
   mockito: ^5.0.16 #test moquito importante 
   sqflite: ^2.0.0+4
-  path_provider: ^2.0.0
+  path_provider: ^2.0.2
+  path: ^1.8.0
+  image_picker: ^0.8.5+3
+  permission_handler: ^10.2.0
+  device_apps: ^2.2.0
+  
 
   cupertino_icons: ^1.0.8
+  intl: ^0.19.0
+  android_intent_plus: ^5.1.0
+  shared_preferences: ^2.3.2
+  http: ^1.2.2
+  fl_chart: ^0.69.0
+  #permission_handler: ^11.3.1
+  #permisos para red
+  
+
 
 dev_dependencies:
   flutter_test:
@@ -28,8 +42,8 @@ flutter:
 
   uses-material-design: true
 
-  #assets:
-   # - assets/models/model.tflite
+  assets:
+   - assets/mobile.png
   # fonts:
   #   - family: Schyler
   #     fonts:
